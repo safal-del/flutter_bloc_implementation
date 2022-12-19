@@ -10,7 +10,11 @@ class CheckApiBloc extends Bloc<AppEvent, Initialstate>{
      CheckApiBloc():super(LoadinState()){
        
        on<AppEvent>((event, emit) async{
+          print("hello is this running");
+          
             var resultdata = await UserRepositary().getApi();
+            print(resultdata);
+           
             
           emit(LoadinState());
           emit(FailureState());

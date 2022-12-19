@@ -1,14 +1,26 @@
 import 'package:bloc_flutter/bloc/app_state.dart';
 import 'package:bloc_flutter/bloc/bloc_state.dart';
+import 'package:bloc_flutter/products/product_api/product_api.dart';
+import 'package:bloc_flutter/products/product_bloc/product_bloc.dart';
 import 'package:bloc_flutter/ui/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
+  MyApp().checkData();
+   
 }
 
 class MyApp extends StatelessWidget {
+
+
+  void checkData() async{
+    var data=  ProductsApi().getApiOfProduct();
+    print(data);
+
+ 
+  }
   const MyApp({super.key});
 
   // This widget is the root of your application.
@@ -17,6 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CheckApiBloc()),
+        BlocProvider(create: (_)=>ProductBloc()),
 
       ],
      
